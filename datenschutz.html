@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz — Quoodix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bg: #0A0A0A;
+    --ink: #FFFFFF;
+    --ink-soft: #B0B0B0;
+    --ink-mute: #707070;
+    --line: rgba(255,255,255,0.1);
+    --accent: #00F5FF;
+  }
+  
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  a { color: inherit; }
+  
+  .nav {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+  }
+  
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-back {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  
+  .nav-back:hover {
+    color: var(--accent);
+  }
+  
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 160px 48px 120px;
+  }
+  
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  
+  .page-title {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 56px;
+  }
+  
+  .ds-intro {
+    margin-bottom: 64px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .ds-intro p {
+    font-size: 17px;
+    color: white;
+    line-height: 1.7;
+  }
+  
+  .ds-section {
+    margin-bottom: 56px;
+  }
+  
+  .ds-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: white;
+    margin-bottom: 24px;
+  }
+  
+  .ds-section h3 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  
+  .ds-section p {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  
+  .ds-section p strong {
+    color: white;
+    font-weight: 500;
+  }
+  
+  .ds-section a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,245,255,0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  
+  .ds-section a:hover {
+    border-color: var(--accent);
+  }
+  
+  .ds-update {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+  }
+  
+  .footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+  }
+  
+  .footer-inner a {
+    text-decoration: none;
+    color: var(--ink-mute);
+    transition: color 0.2s;
+  }
+  
+  .footer-inner a:hover {
+    color: white;
+  }
+  
+  .footer-meta {
+    display: flex;
+    gap: 24px;
+  }
+  
+  @media (max-width: 768px) {
+    .nav { padding: 0 24px; }
+    .page { padding: 120px 24px 80px; }
+    .footer { padding: 24px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Quoodix</a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<main class="page">
+  
+  <div class="page-eyebrow">⸺ Rechtliches</div>
+  <h1 class="page-title">Datenschutz.</h1>
+  
+  <div class="ds-intro">
+    <p>Die folgenden Hinweise geben einen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Datenerfassung auf dieser Website</h2>
+    
+    <h3>Wer ist verantwortlich für die Datenerfassung?</h3>
+    <p>Quoodix ist ein Projekt der B77 GmbH. Die Datenverarbeitung auf dieser Website erfolgt durch den rechtlich verantwortlichen Anbieter. Dessen Kontaktdaten finden Sie im <a href="impressum.html">Impressum</a>.</p>
+    
+    <h3>Wie erfassen wir Ihre Daten?</h3>
+    <p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen — beispielsweise durch eine E-Mail an uns. Andere Daten werden automatisch beim Besuch der Website durch unser Hosting-System erfasst (z. B. Browser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+    
+    <h3>Wofür nutzen wir Ihre Daten?</h3>
+    <p>Die Daten werden ausschließlich erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten und Sicherheitsrisiken abzuwehren. Eine Analyse Ihres Nutzerverhaltens findet auf dieser Website derzeit nicht statt.</p>
+    
+    <h3>Welche Rechte haben Sie bezüglich Ihrer Daten?</h3>
+    <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>SSL- bzw. TLS-Verschlüsselung</h2>
+    <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt.</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>E-Mail-Kontakt</h2>
+    <p>Wenn Sie uns per E-Mail kontaktieren — etwa über die auf dieser Website verlinkten Mailto-Links — werden Ihre Angaben aus der E-Mail inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertragsverhältnisses) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung Ihrer Anfrage).</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Sprachausgabe (Web Speech API)</h2>
+    <p>Diese Website bietet eine optionale Sprachausgabe-Funktion an, mit der ausgewählte Texte vorgelesen werden können. Hierfür wird ausschließlich die im Browser integrierte <strong>Web Speech API</strong> verwendet. Die Sprachausgabe erfolgt vollständig lokal in Ihrem Browser. Es werden keine Daten an externe Server übertragen — auch nicht an uns.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer barrierearmen Darstellung).</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Google Fonts</h2>
+    <p>Diese Website verwendet die Schriftarten „Inter" und „JetBrains Mono", die zur Vereinheitlichung der Darstellung über das Content Delivery Network von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google") geladen werden. Beim Laden der Schriftarten wird Ihre IP-Adresse an Server von Google übertragen.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einheitlichen und schnellen Schriftdarstellung). Wir prüfen aktuell die Umstellung auf eine lokale Auslieferung der Schriftarten, um den Datentransfer zu Google zu vermeiden.</p>
+    <p>Weitere Informationen finden Sie in den Datenschutzhinweisen von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Hosting</h2>
+    <p>Diese Website wird bei einem externen Dienstleister gehostet. Beim Aufruf der Website verarbeitet der Hosting-Anbieter automatisch technische Daten (u. a. IP-Adresse, Browser, Betriebssystem) zur Auslieferung der Seite und zur Gewährleistung der Sicherheit. Mit dem Hosting-Anbieter besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und stabilen Website).</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Externe Verlinkungen</h2>
+    <p>Diese Website verlinkt auf externe soziale Netzwerke (LinkedIn, Instagram). Beim Anklicken dieser Links werden Sie auf die jeweilige Plattform weitergeleitet, wobei dort Daten gemäß deren eigener Datenschutzerklärung verarbeitet werden. Eine direkte Einbindung der sozialen Netzwerke (z. B. durch Tracking-Pixel oder Plugins) findet auf dieser Website nicht statt.</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Cookies</h2>
+    <p>Diese Website verwendet derzeit <strong>keine Cookies</strong>. Es werden keine Tracking-, Marketing- oder Analysedienste eingesetzt, die Cookies erfordern würden. Sollte sich dies in Zukunft ändern, werden wir diese Datenschutzerklärung entsprechend anpassen und ein Cookie-Banner zur Einholung Ihrer Einwilligung einrichten.</p>
+  </div>
+  
+  <div class="ds-section">
+    <h2>Ihre Rechte</h2>
+    <p>Sie haben jederzeit das Recht:</p>
+    <p>
+      • <strong>Auskunft</strong> über Ihre bei uns gespeicherten personenbezogenen Daten zu verlangen (Art. 15 DSGVO)<br>
+      • Die <strong>Berichtigung</strong> unrichtiger Daten zu verlangen (Art. 16 DSGVO)<br>
+      • Die <strong>Löschung</strong> Ihrer Daten zu verlangen (Art. 17 DSGVO)<br>
+      • Die <strong>Einschränkung der Verarbeitung</strong> zu verlangen (Art. 18 DSGVO)<br>
+      • Der <strong>Verarbeitung zu widersprechen</strong> (Art. 21 DSGVO)<br>
+      • <strong>Datenübertragbarkeit</strong> zu verlangen (Art. 20 DSGVO)<br>
+      • Sich bei einer <strong>Aufsichtsbehörde</strong> zu beschweren (Art. 77 DSGVO)
+    </p>
+    <p>Bitte richten Sie entsprechende Anfragen an: <a href="mailto:hello@quoodix.io">hello@quoodix.io</a></p>
+  </div>
+  
+  <div class="ds-update">
+    Letzte Aktualisierung: April 2026
+  </div>
+  
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Quoodix · ein Projekt der B77 GmbH</div>
+    <div class="footer-meta">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="index.html">Zurück zur Startseite</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

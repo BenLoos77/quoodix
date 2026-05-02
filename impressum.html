@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — Quoodix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bg: #0A0A0A;
+    --ink: #FFFFFF;
+    --ink-soft: #B0B0B0;
+    --ink-mute: #707070;
+    --line: rgba(255,255,255,0.1);
+    --accent: #00F5FF;
+  }
+  
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  a { color: inherit; }
+  
+  .nav {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+  }
+  
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-back {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  
+  .nav-back:hover {
+    color: var(--accent);
+  }
+  
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 160px 48px 120px;
+  }
+  
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  
+  .page-title {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 56px;
+  }
+  
+  .impressum-note {
+    margin-bottom: 56px;
+    padding: 20px 24px;
+    background: rgba(0,245,255,0.04);
+    border: 1px solid rgba(0,245,255,0.2);
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  
+  .impressum-note strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  
+  .impressum-block {
+    margin-bottom: 48px;
+  }
+  
+  .impressum-block h2 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  
+  .impressum-block p {
+    font-size: 16px;
+    color: white;
+    line-height: 1.7;
+  }
+  
+  .impressum-block p + p {
+    margin-top: 12px;
+  }
+  
+  .impressum-block .label {
+    color: var(--ink-mute);
+  }
+  
+  .impressum-block .placeholder {
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+  
+  .impressum-block a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,245,255,0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  
+  .impressum-block a:hover {
+    border-color: var(--accent);
+  }
+  
+  .footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  
+  .footer-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footer-meta a {
+    text-decoration: none;
+    color: var(--ink-mute);
+    transition: color 0.2s;
+  }
+  
+  .footer-meta a:hover {
+    color: var(--ink-soft);
+  }
+  
+  @media (max-width: 768px) {
+    .nav { padding: 0 24px; }
+    .page { padding: 120px 24px 80px; }
+    .footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Quoodix</a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<main class="page">
+  
+  <div class="page-eyebrow">⸺ Rechtliches</div>
+  <h1 class="page-title">Impressum.</h1>
+  
+  <div class="impressum-note">
+    <strong>Quoodix</strong> ist ein Projekt der B77 GmbH. Es handelt sich nicht um eine eigenständige Gesellschaft. Alle nachfolgenden Angaben beziehen sich auf die rechtlich verantwortliche Gesellschaft.
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>
+      B77 GmbH<br>
+      Wallhausenstraße 1<br>
+      57072 Siegen<br>
+      Deutschland
+    </p>
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Vertretungsberechtigte Geschäftsführung</h2>
+    <p>
+      Benjamin Loos<br>
+      <span class="placeholder">[ggf. weitere Geschäftsführer ergänzen]</span>
+    </p>
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Handelsregister</h2>
+    <p>
+      <span class="label">Registergericht:</span> <span class="placeholder">[Amtsgericht Siegen — bitte bestätigen]</span><br>
+      <span class="label">Registernummer:</span> <span class="placeholder">[HRB ... — bitte ergänzen]</span>
+    </p>
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Kontakt</h2>
+    <p>
+      <span class="label">Telefon:</span> +49 (0) 271 — 890 27 837<br>
+      <span class="label">E-Mail:</span> <a href="mailto:hello@quoodix.io">hello@quoodix.io</a>
+    </p>
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Umsatzsteuer-ID</h2>
+    <p>
+      Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+      <span class="placeholder">[USt-ID der GmbH bitte ergänzen, ggf. neu beantragt]</span>
+    </p>
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Redaktionell verantwortlich</h2>
+    <p>
+      Benjamin Loos<br>
+      Anschrift wie oben
+    </p>
+  </div>
+  
+  <div class="impressum-block">
+    <h2>Streitschlichtung</h2>
+    <p>
+      Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br>
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>
+    </p>
+    <p>
+      Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+    </p>
+  </div>
+  
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-meta">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <span>© 2026 Quoodix · ein Projekt der B77 GmbH</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

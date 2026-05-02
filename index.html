@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quoodix — KI im Einsatz für den Mittelstand.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bg: #0A0A0A;
+    --ink: #FFFFFF;
+    --ink-soft: #B0B0B0;
+    --ink-mute: #707070;
+    --line: rgba(255,255,255,0.1);
+    --accent: #00F5FF;
+    --accent-soft: rgba(0,245,255,0.5);
+    --accent-glow: rgba(0,245,255,0.12);
+  }
+  
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  a { color: inherit; text-decoration: none; }
+  
+  /* NAV */
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+  }
+  
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: white;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+  }
+  
+  .nav-links a {
+    transition: opacity 0.2s;
+    opacity: 0.85;
+  }
+  
+  .nav-links a:hover { opacity: 1; }
+  
+  /* HERO STAGE — monumental */
+  
+  .hero {
+    height: 100vh;
+    min-height: 720px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* Animated background — Codex layers floating */
+  
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 40%, var(--accent-glow) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(255,255,255,0.04) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+  }
+  
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    animation: gridfloat 60s linear infinite;
+  }
+  
+  @keyframes gridfloat {
+    from { transform: translate(0, 0); }
+    to { transform: translate(80px, 80px); }
+  }
+  
+  /* Floating data points */
+  
+  .floater {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .floater-1 {
+    top: 20%;
+    left: 15%;
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.4);
+    animation: float1 12s ease-in-out infinite;
+  }
+  
+  .floater-2 {
+    top: 65%;
+    right: 18%;
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    animation: float2 18s ease-in-out infinite;
+  }
+  
+  .floater-3 {
+    top: 35%;
+    right: 25%;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    box-shadow: 0 0 32px rgba(0,245,255,0.5), 0 0 16px var(--accent);
+    animation: float3 15s ease-in-out infinite;
+  }
+  
+  .floater-4 {
+    top: 75%;
+    left: 25%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.35);
+    animation: float1 20s ease-in-out infinite;
+  }
+  
+  .floater-5 {
+    top: 25%;
+    left: 60%;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.5);
+    animation: float2 14s ease-in-out infinite;
+  }
+  
+  @keyframes float1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(40px, -30px); }
+  }
+  
+  @keyframes float2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-50px, 40px); }
+  }
+  
+  @keyframes float3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, 20px) scale(1.3); }
+  }
+  
+  /* Connecting lines — subtle */
+  
+  .connector {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform-origin: 0 0;
+  }
+  
+  .connector-1 {
+    top: 22%;
+    left: 16%;
+    width: 30vw;
+    transform: rotate(15deg);
+    animation: pulseLine 8s ease-in-out infinite;
+  }
+  
+  .connector-2 {
+    top: 38%;
+    right: 26%;
+    width: 25vw;
+    transform: rotate(-25deg);
+    animation: pulseLine 11s ease-in-out infinite 2s;
+  }
+  
+  @keyframes pulseLine {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+  
+  /* Hero content */
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+  }
+  
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.2s forwards;
+  }
+  
+  /* Monumental wordmark */
+  
+  .hero-wordmark {
+    font-size: clamp(80px, 22vw, 280px);
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+    color: white;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease 0.4s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Tagline with em-dash */
+  
+  .hero-tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: white;
+    margin-top: 8px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.8s forwards;
+  }
+  
+  .hero-tagline::before {
+    content: "⸺";
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  
+  .hero-tagline a {
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  
+  .hero-tagline a:hover { border-color: white; }
+  
+  .hero-tagline em {
+    font-style: italic;
+    font-weight: 600;
+  }
+  
+  /* Scroll indicator */
+  
+  .scroll-hint {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 1.2s forwards;
+  }
+  
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(180deg, var(--ink-mute) 0%, transparent 100%);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(0.6); transform-origin: top; }
+  }
+  
+  /* Manifest / Was wir tun — monumentaler Stil */
+  
+  .manifest {
+    padding: 160px 24px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  
+  .manifest-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  
+  .manifest-text {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    max-width: 1080px;
+    margin: 0 auto;
+    color: white;
+  }
+  
+  .manifest-text em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  
+  .manifest-text strong {
+    font-weight: 600;
+  }
+  
+  /* Audio-Player Button */
+  
+  .listen-block {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .listen-block-pillar {
+    justify-content: flex-start;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+  
+  .listen-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px 14px 18px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    letter-spacing: 0.01em;
+  }
+  
+  .listen-btn:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: white;
+  }
+  
+  .listen-btn.playing {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+  
+  .listen-icon {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 16px;
+  }
+  
+  .listen-icon-bar {
+    width: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: height 0.15s ease;
+  }
+  
+  .listen-icon-bar:nth-child(1) { height: 6px; }
+  .listen-icon-bar:nth-child(2) { height: 10px; }
+  .listen-icon-bar:nth-child(3) { height: 14px; }
+  .listen-icon-bar:nth-child(4) { height: 8px; }
+  .listen-icon-bar:nth-child(5) { height: 4px; }
+  
+  .listen-btn.playing .listen-icon-bar {
+    animation: equalizer 1.2s ease-in-out infinite;
+  }
+  
+  .listen-btn.playing .listen-icon-bar:nth-child(1) { animation-delay: 0s; }
+  .listen-btn.playing .listen-icon-bar:nth-child(2) { animation-delay: 0.15s; }
+  .listen-btn.playing .listen-icon-bar:nth-child(3) { animation-delay: 0.3s; }
+  .listen-btn.playing .listen-icon-bar:nth-child(4) { animation-delay: 0.45s; }
+  .listen-btn.playing .listen-icon-bar:nth-child(5) { animation-delay: 0.6s; }
+  
+  @keyframes equalizer {
+    0%, 100% { height: 4px; }
+    50% { height: 14px; }
+  }
+  
+  .listen-label-stop {
+    display: none;
+  }
+  
+  .listen-btn.playing .listen-label-play { display: none; }
+  .listen-btn.playing .listen-label-stop { display: inline; }
+  
+  /* Sternchen + Fußnote */
+  
+  .star {
+    color: var(--ink-mute);
+    font-weight: 400;
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  
+  .footnote {
+    margin: 56px auto 0;
+    max-width: 720px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+    text-align: left;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    display: flex;
+    gap: 12px;
+  }
+  
+  .footnote-marker {
+    color: var(--ink-soft);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  
+  .footnote-text em {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 500;
+  }
+  
+  /* Säulen-Sektionen — Beratung & Tools */
+  
+  .pillar {
+    padding: 160px 48px;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  
+  .pillar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  
+  .pillar-marker {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 12px;
+  }
+  
+  .pillar-content h2 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 32px;
+    color: white;
+  }
+  
+  .pillar-content h2 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+  
+  .pillar-lead {
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 400;
+    line-height: 1.4;
+    color: white;
+    margin-bottom: 32px;
+    max-width: 720px;
+  }
+  
+  .pillar-body {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  
+  .pillar-body p + p {
+    margin-top: 16px;
+  }
+  
+  .pillar-body strong {
+    color: white;
+    font-weight: 500;
+  }
+  
+  .pillar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 32px;
+    font-size: 16px;
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  
+  .pillar-link:hover {
+    border-color: white;
+  }
+  
+  /* Sub-Aspekte einer Säule (z.B. "individuelle Tools" + "eigene Tools") */
+  
+  .subpillars {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    border-top: 1px solid var(--line);
+    padding-top: 48px;
+  }
+  
+  .subpillar h3 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: white;
+    margin-bottom: 12px;
+  }
+  
+  .subpillar h3 em {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  
+  .subpillar p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  
+  .inline-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+    text-decoration: none;
+  }
+  
+  .inline-link:hover {
+    border-color: white;
+  }
+  
+  /* Zitat-Bühne — eigener Atem-Moment */
+  
+  .quote-stage {
+    padding: 200px 48px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    position: relative;
+  }
+  
+  .quote-stage::before,
+  .quote-stage::after {
+    content: "⸺";
+    color: var(--ink-mute);
+    font-size: 24px;
+    display: block;
+    line-height: 1;
+  }
+  
+  .quote-stage::before {
+    margin-bottom: 64px;
+  }
+  
+  .quote-stage::after {
+    margin-top: 64px;
+  }
+  
+  .quote-text {
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: white;
+    max-width: 1080px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+  
+  .quote-text strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  
+  .quote-text .accent {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  
+
+  /* AGENTEN — Spotlight Sektion */
+  
+  .spotlight {
+    padding: 160px 48px;
+    border-top: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,245,255,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .spotlight-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .spotlight-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .spotlight-eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  
+  .spotlight-headline {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: white;
+    margin-bottom: 64px;
+    max-width: 1080px;
+  }
+  
+  .spotlight-headline em {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  
+  .spotlight-headline strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  
+  .spotlight-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    max-width: 1080px;
+  }
+  
+  .spotlight-col h3 {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  
+  .spotlight-col p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  
+  .spotlight-col p + p {
+    margin-top: 16px;
+  }
+  
+  .spotlight-col p strong {
+    color: white;
+    font-weight: 500;
+  }
+  
+  .spotlight-col p em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  
+  /* Agent-Karten Bereich */
+  
+  .agent-cards-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  
+  .agent-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .agent-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .agent-card:hover {
+    border-color: rgba(0,245,255,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,245,255,0.06);
+  }
+  
+  .agent-card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    padding: 4px 10px;
+    background: rgba(0,245,255,0.08);
+    border: 1px solid rgba(0,245,255,0.25);
+    border-radius: 999px;
+    font-size: 11px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.04em;
+  }
+  
+  .agent-card-status::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+  }
+  
+  .agent-card-branche {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  
+  .agent-card h4 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 14px;
+  }
+  
+  .agent-card h4 em {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  
+  .agent-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  
+  .agent-card-tasks {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .agent-card-task {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  
+  .agent-card-task::before {
+    content: "→";
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  
+  /* KI-Anwendungen Bento */
+  
+  .bento-section {
+    padding: 160px 48px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .bento-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  
+  .bento-marker {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 12px;
+  }
+  
+  .bento-content h2 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 32px;
+    color: white;
+  }
+  
+  .bento-content h2 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+  
+  .bento-lead {
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 400;
+    line-height: 1.4;
+    color: white;
+    margin-bottom: 56px;
+    max-width: 720px;
+  }
+  
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(220px, auto);
+    gap: 12px;
+  }
+  
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(280px, auto);
+    gap: 12px;
+  }
+  
+  .bento-tile {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 280px;
+  }
+  
+  .bento-tile::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,245,255,0) 0%, rgba(0,245,255,0) 100%, transparent 100%);
+    transition: background 0.4s ease;
+  }
+  
+  .bento-tile:hover {
+    border-color: rgba(0,245,255,0.4);
+    background: linear-gradient(135deg, rgba(0,245,255,0.06) 0%, rgba(0,245,255,0.015) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,245,255,0.08);
+  }
+  
+  .bento-tile:hover::before {
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+  }
+  
+  .bento-tile.large {
+    grid-column: span 4;
+    background: linear-gradient(135deg, rgba(0,245,255,0.05) 0%, rgba(0,245,255,0.01) 100%);
+    border-color: rgba(0,245,255,0.2);
+  }
+  
+  .bento-tile.large::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .bento-tile.medium { grid-column: span 3; }
+  .bento-tile.small { grid-column: span 2; }
+  
+  .bento-tile-number {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+  
+  .bento-tile-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .bento-tile-eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  
+  .bento-tile h3 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    color: white;
+    margin-bottom: 16px;
+  }
+  
+  .bento-tile.large h3 {
+    font-size: 44px;
+    line-height: 1.0;
+    margin-bottom: 24px;
+    max-width: 480px;
+  }
+  
+  .bento-tile h3 em {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  
+  .bento-tile h3 strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  
+  .bento-tile p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  
+  .bento-tile.large p {
+    font-size: 16px;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+  
+  .bento-tile-examples {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .bento-tile-example {
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.02em;
+  }
+  
+  .bento-tile-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    padding: 6px 12px;
+    background: rgba(0,245,255,0.1);
+    border: 1px solid rgba(0,245,255,0.3);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.04em;
+    width: fit-content;
+  }
+  
+  .bento-tile-tag::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+  
+  /* "Und mehr"-Kachel */
+  
+  .bento-tile.more {
+    background: transparent;
+    border: 1px dashed rgba(255,255,255,0.18);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .bento-tile.more:hover {
+    border-color: var(--accent);
+    border-style: solid;
+    background: rgba(0,245,255,0.03);
+  }
+  
+  .bento-tile.more::before { display: none; }
+  
+  .bento-tile-more-icon {
+    width: 56px;
+    height: 56px;
+    border: 1.5px solid var(--ink-mute);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 26px;
+    color: var(--ink-mute);
+    font-weight: 300;
+    transition: border-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .bento-tile.more:hover .bento-tile-more-icon {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(90deg);
+  }
+  
+  .bento-tile.more h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: white;
+  }
+  
+  .bento-tile.more p {
+    font-size: 13.5px;
+    color: var(--ink-mute);
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* Über uns - Team Block */
+  
+  .team-block {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .team-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  
+  .team-member-name {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: white;
+    margin-bottom: 4px;
+  }
+  
+  .team-member-role {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mute);
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+  }
+  
+  .team-member-bio {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  
+  /* CONTACT STAGE */
+  
+  .contact-stage {
+    padding: 160px 48px 96px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  
+  .contact-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  
+  .contact-headline {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: white;
+    margin-bottom: 24px;
+  }
+  
+  .contact-headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+  
+  .contact-sub {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto 48px;
+  }
+  
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 36px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-bottom: 64px;
+  }
+  
+  .contact-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .contact-direct {
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+  
+  .contact-direct-item {
+    text-align: center;
+  }
+  
+  .contact-direct-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+  
+  .contact-direct-value {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  
+  .contact-direct-value:hover {
+    border-color: white;
+  }
+  
+  /* FOOTER */
+  
+  .footer {
+    padding: 64px 48px 32px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  
+  .footer-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footer-meta a:hover { color: var(--ink-soft); }
+  
+  @media (max-width: 768px) {
+    .nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero-wordmark { font-size: 80px; }
+    .manifest { padding: 96px 24px; }
+    .pillar { padding: 96px 24px; }
+    .pillar-inner { grid-template-columns: 1fr; gap: 24px; }
+    .pillar-marker { padding-top: 0; }
+    .subpillars { grid-template-columns: 1fr; gap: 32px; }
+    .spotlight { padding: 96px 24px; }
+    .spotlight-body { grid-template-columns: 1fr; gap: 40px; }
+    .agent-cards { grid-template-columns: 1fr; }
+    .bento-section { padding: 96px 24px; }
+    .bento-inner { grid-template-columns: 1fr; gap: 24px; }
+    .bento-marker { padding-top: 0; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-tile.large, .bento-tile.medium, .bento-tile.small { grid-column: 1; }
+    .bento-tile.large h3 { font-size: 30px; }
+    .bento-tile { padding: 24px; min-height: 240px; }
+    .bento-tile-number { top: 22px; right: 24px; font-size: 10px; }
+    .quote-stage { padding: 120px 24px; }
+    .quote-stage::before, .quote-stage::after { margin-top: 40px; margin-bottom: 40px; }
+    .team-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-stage { padding: 96px 24px 64px; }
+    .contact-direct { gap: 32px; }
+    .footer { padding: 48px 24px 24px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .scroll-hint { bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#hero" class="nav-logo">Quoodix</a>
+  <div class="nav-links">
+    <a href="#beratung">Beratung</a>
+    <a href="#tools">Tools</a>
+    <a href="#agenten">Agenten</a>
+    <a href="#anwendungen">Anwendungen</a>
+    <a href="#team">Team</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="connector connector-1"></div>
+    <div class="connector connector-2"></div>
+    <div class="floater floater-1"></div>
+    <div class="floater floater-2"></div>
+    <div class="floater floater-3"></div>
+    <div class="floater floater-4"></div>
+    <div class="floater floater-5"></div>
+  </div>
+  
+  <div class="hero-content">
+    <div class="hero-eyebrow">welcome to</div>
+    <h1 class="hero-wordmark">Quoodix</h1>
+    <div class="hero-tagline">
+      <a href="#"><em>KI im Einsatz für den Mittelstand.</em> <span style="color:var(--accent);">Tools für Ihren Erfolg.</span></a>
+    </div>
+  </div>
+  
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- WAS WIR TUN -->
+<section class="manifest">
+  <div class="manifest-eyebrow">⸺ Was wir tun</div>
+  
+  <p class="manifest-text">
+    KI ist kein Gegner, sondern ein <em>neuer Kollege</em>. Wir sensibilisieren Ihr Team, schaffen Verständnis und integrieren KI praxisnah in Ihre Prozesse. Wir <em style="color:var(--accent);">quoodixfizieren</em><span class="star">*</span> Ihr Know-how — und machen KI zu einem echten Teil Ihres Teams.
+  </p>
+  
+  <div class="listen-block">
+    <button class="listen-btn" id="listenBtn" onclick="toggleListen()">
+      <span class="listen-icon">
+        <span class="listen-icon-bar"></span>
+        <span class="listen-icon-bar"></span>
+        <span class="listen-icon-bar"></span>
+        <span class="listen-icon-bar"></span>
+        <span class="listen-icon-bar"></span>
+      </span>
+      <span class="listen-label-play">Ausführliche Version anhören</span>
+      <span class="listen-label-stop">Wiedergabe stoppen</span>
+    </button>
+  </div>
+  
+  <div class="footnote">
+    <span class="footnote-marker">*</span>
+    <span class="footnote-text"><em>quoodixfizieren</em> — unser Begriff für den entscheidenden ersten Schritt: Wir erfassen Ihr Know-how, strukturieren es, übersetzen es in klare Logiken und überführen es in Lösungen, die für Ihr Team verständlich sind und KI sinnvoll einsetzbar machen.</span>
+  </div>
+</section>
+
+<script>
+  const audioTexts = {
+    'manifest': `KI ist kein Gegner, sondern ein neuer Kollege, der verstanden, eingeführt und sinnvoll eingesetzt werden will. Entscheidend ist dabei weniger die Technologie selbst als die Frage, wie gut Ihr Team darauf vorbereitet ist, mit ihr zu arbeiten – genau hier setzt Quoodix an.
+
+Wir sensibilisieren Ihr Team, schaffen ein gemeinsames Verständnis und zeigen konkret, wo KI echten Mehrwert bringt, statt Komplexität zu erhöhen. Im Fokus steht die praxisnahe Integration in bestehende Prozesse.
+
+Quoodix begleitet Sie ganzheitlich: mit Beratung, die Ihr Team mitnimmt, mit individuell entwickelten Tools und mit bewährten Lösungen zur Arbeitserleichterung. So entsteht kein Bruch im Arbeitsalltag, sondern klare Strukturen, spürbare Entlastung und kein Wildwuchs.
+
+Wir quoodixfizieren Ihr Know-how – wir strukturieren, übersetzen und übertragen Ihre Stärken in produktiv nutzbare Lösungen. So wird KI zu einem echten Teil Ihres Teams.`,
+    
+    'beratung': `Wir zeigen Ihnen und Ihrem Team, wie KI in Ihrem Unternehmen sinnvoll eingesetzt wird – und entwickeln gemeinsam Ihre eigene KI-DNA.
+
+Quoodix-Beratung beginnt mit Zuhören. Wir kommen zu Ihnen, sprechen mit den Menschen, die Ihre Prozesse täglich leben, und identifizieren, wo KI wirklich entlastet – und wo ihr Einsatz keinen Mehrwert bringt.
+
+Dabei nehmen wir Ihr Team konsequent mit. Wir schaffen Verständnis, bauen Berührungsängste ab und verankern den Umgang mit KI im Arbeitsalltag. Aus Ihren Abläufen, Ihrer Sprache und Ihren Werten entsteht so Ihre individuelle KI-DNA – ein klares Regelwerk dafür, wie KI in Ihrem Unternehmen arbeiten soll.
+
+Das Ergebnis sind keine Präsentationen, sondern produktive Werkzeuge im täglichen Einsatz – und ein Team, das versteht, wie und warum es diese nutzt.`
+  };
+  
+  let currentAudioKey = null;
+  
+  function toggleListen() {
+    playAudio('manifest', 'listenBtn');
+  }
+  
+  function toggleListenBeratung() {
+    playAudio('beratung', 'listenBtnBeratung');
+  }
+  
+  function playAudio(key, btnId) {
+    if (!('speechSynthesis' in window)) {
+      alert('Ihr Browser unterstützt leider keine Sprachausgabe. Bitte nutzen Sie einen aktuellen Browser wie Chrome, Safari oder Edge.');
+      return;
+    }
+    
+    // Wenn etwas anderes laeuft, stoppen
+    if (currentAudioKey && currentAudioKey !== key) {
+      window.speechSynthesis.cancel();
+      const oldBtn = document.getElementById(getButtonIdForKey(currentAudioKey));
+      if (oldBtn) oldBtn.classList.remove('playing');
+      currentAudioKey = null;
+    }
+    
+    const btn = document.getElementById(btnId);
+    
+    // Wenn dieser Button bereits laeuft, stoppen
+    if (currentAudioKey === key) {
+      window.speechSynthesis.cancel();
+      btn.classList.remove('playing');
+      currentAudioKey = null;
+      return;
+    }
+    
+    const utterance = new SpeechSynthesisUtterance(audioTexts[key]);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    
+    const voices = window.speechSynthesis.getVoices();
+    const germanVoice = voices.find(v => v.lang.startsWith('de'));
+    if (germanVoice) utterance.voice = germanVoice;
+    
+    utterance.onstart = () => {
+      currentAudioKey = key;
+      btn.classList.add('playing');
+    };
+    
+    utterance.onend = () => {
+      btn.classList.remove('playing');
+      if (currentAudioKey === key) currentAudioKey = null;
+    };
+    
+    utterance.onerror = () => {
+      btn.classList.remove('playing');
+      if (currentAudioKey === key) currentAudioKey = null;
+    };
+    
+    window.speechSynthesis.speak(utterance);
+  }
+  
+  function getButtonIdForKey(key) {
+    const map = {
+      'manifest': 'listenBtn',
+      'beratung': 'listenBtnBeratung'
+    };
+    return map[key];
+  }
+  
+  // Stimmen async laden (manche Browser benötigen das)
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
+  }
+</script>
+
+<!-- BERATUNG -->
+<section class="pillar" id="beratung">
+  <div class="pillar-inner">
+    <div class="pillar-marker">⸺ 01 Beratung</div>
+    <div class="pillar-content">
+      <h2>KI im Alltag.<br><em>Mit Ihrem Team.</em></h2>
+      <p class="pillar-lead">Wir zeigen Ihnen und Ihrem Team, wie KI in Ihrem Unternehmen sinnvoll eingesetzt wird — und entwickeln gemeinsam Ihre eigene KI-DNA.</p>
+      <div class="pillar-body">
+        <p>Quoodix-Beratung beginnt mit Zuhören. Wir kommen zu Ihnen, sprechen mit den Menschen, die Ihre Prozesse täglich leben, und identifizieren, wo KI wirklich entlastet — und wo ihr Einsatz keinen Mehrwert bringt.</p>
+        
+        <p>Dabei nehmen wir Ihr Team konsequent mit. Wir schaffen Verständnis, bauen <strong>Berührungsängste</strong> ab und verankern den Umgang mit KI im Arbeitsalltag. Aus Ihren Abläufen, Ihrer Sprache und Ihren Werten entsteht so Ihre individuelle <strong>KI-DNA</strong> — ein klares Regelwerk dafür, wie KI in Ihrem Unternehmen arbeiten soll.</p>
+        
+        <p>Das Ergebnis sind keine Präsentationen, sondern <em>produktive Werkzeuge im täglichen Einsatz</em> — und ein Team, das versteht, wie und warum es diese nutzt.</p>
+      </div>
+      
+      <div class="listen-block listen-block-pillar">
+        <button class="listen-btn" id="listenBtnBeratung" onclick="toggleListenBeratung()">
+          <span class="listen-icon">
+            <span class="listen-icon-bar"></span>
+            <span class="listen-icon-bar"></span>
+            <span class="listen-icon-bar"></span>
+            <span class="listen-icon-bar"></span>
+            <span class="listen-icon-bar"></span>
+          </span>
+          <span class="listen-label-play">Beratung anhören</span>
+          <span class="listen-label-stop">Wiedergabe stoppen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="pillar" id="tools">
+  <div class="pillar-inner">
+    <div class="pillar-marker">⸺ 02 Tools</div>
+    <div class="pillar-content">
+      <h2>Werkzeuge,<br><em>die mitarbeiten.</em></h2>
+      <p class="pillar-lead">Wir entwickeln eigene KI-Werkzeuge für den Mittelstand — und bauen für Sie individuelle Lösungen, die genau auf Ihr Unternehmen zugeschnitten sind.</p>
+      <div class="pillar-body">
+        <p>Wo Standardsoftware aufhört, fangen wir an. Quoodix-Tools entstehen nicht im Showroom, sondern in der Praxis: aus echten Aufgaben mittelständischer Unternehmen, gehärtet im täglichen Einsatz und konsequent weiterentwickelt.</p>
+      </div>
+      
+      <div class="subpillars">
+        <div class="subpillar">
+          <h3>Eigene Tools <em>für den Mittelstand</em></h3>
+          <p>Unsere eigenen Tools entlasten Sie dort, wo viele Mittelständler heute zu wenig Hände haben: Marketing, Vertrieb, Verwaltung. Den Anfang macht <strong>Marlo</strong>, unser digitaler Marketingleiter für KMU — derzeit in der Beta-Phase. Weitere Tools folgen.</p>
+        </div>
+        <div class="subpillar">
+          <h3>Individuelle Lösungen <em>für Ihr Unternehmen</em></h3>
+          <p>Sie haben einen Engpass, für den keine Software passt? Wir entwickeln gemeinsam mit Ihnen das passende KI-Werkzeug — exakt auf Ihre Prozesse zugeschnitten, in enger Abstimmung mit Ihrem Team.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- AGENTEN — Spotlight -->
+<section class="spotlight" id="agenten">
+  <div class="spotlight-inner">
+    
+    <div class="spotlight-eyebrow">Spotlight · Im Auftrag</div>
+    
+    <h2 class="spotlight-headline">
+      KI-Agenten,<br>
+      <em>die für Sie arbeiten.</em><br>
+      <strong>Nicht nur antworten.</strong>
+    </h2>
+    
+    <div class="spotlight-body">
+      
+      <div class="spotlight-col">
+        <h3>— Was ein Agent ist</h3>
+        <p>Ein <strong>KI-Agent</strong> ist mehr als ein Chatbot. Er beantwortet nicht nur Fragen, sondern <em>erledigt eigenständig Aufgaben</em>: Er liest E-Mails, prüft Dokumente, recherchiert im Web, ruft Datenbanken auf, schreibt Antworten, legt Tickets an, aktualisiert Tabellen — alles entlang einer klaren Aufgabenliste, die Sie ihm geben.</p>
+        <p>Stellen Sie sich einen <strong>digitalen Mitarbeiter</strong> vor, der eine sehr klare Stellenbeschreibung hat, sich an Ihre Regeln hält und rund um die Uhr verfügbar ist. Genau das ist ein Agent.</p>
+      </div>
+      
+      <div class="spotlight-col">
+        <h3>— Was wir damit machen</h3>
+        <p>Wir entwickeln Agenten <strong>im Auftrag unserer Kunden</strong> — exakt zugeschnitten auf deren Prozesse, Daten und Sprache. Kein Standardprodukt, sondern ein eigener Mitarbeiter, der genau das tut, was bei Ihnen wiederkehrend Zeit kostet.</p>
+        <p>Wir analysieren gemeinsam mit Ihrem Team, welche Aufgaben sich für einen Agenten eignen, bauen ihn, integrieren ihn in Ihre Systeme und übergeben ihn betriebsbereit. Auf Wunsch betreuen wir ihn auch im laufenden Betrieb.</p>
+      </div>
+      
+    </div>
+    
+    <div class="agent-cards-eyebrow">— Beispiele aus unserer Praxis</div>
+    
+    <div class="agent-cards">
+      
+      <div class="agent-card">
+        <span class="agent-card-status">live im einsatz</span>
+        <div class="agent-card-branche">Maschinenbau</div>
+        <h4>Angebots-Agent <em>für individuelle Anfragen</em></h4>
+        <p>Erstellt aus eingehenden Kundenanfragen vorbereitete Angebote auf Basis bestehender Preislisten, Konfigurationen und der Unternehmenssprache.</p>
+        <div class="agent-card-tasks">
+          <div class="agent-card-task">Liest Anfrage-Mails und erkennt benötigte Komponenten</div>
+          <div class="agent-card-task">Greift auf Preislisten und Konfigurations-Datenbank zu</div>
+          <div class="agent-card-task">Erstellt Angebot zur Freigabe durch Vertrieb</div>
+        </div>
+      </div>
+      
+      <div class="agent-card">
+        <span class="agent-card-status">live im einsatz</span>
+        <div class="agent-card-branche">Handel & E-Commerce</div>
+        <h4>Service-Agent <em>für Bestellanfragen</em></h4>
+        <p>Beantwortet Kundenanfragen zu Lieferzeiten, Verfügbarkeiten und Retouren — auf Basis Ihrer Shop-Daten und Service-Richtlinien.</p>
+        <div class="agent-card-tasks">
+          <div class="agent-card-task">Klassifiziert eingehende Tickets nach Anliegen</div>
+          <div class="agent-card-task">Prüft Bestellstatus im Shop-System</div>
+          <div class="agent-card-task">Antwortet selbstständig oder eskaliert bei Bedarf</div>
+        </div>
+      </div>
+      
+      <div class="agent-card">
+        <span class="agent-card-status">live im einsatz</span>
+        <div class="agent-card-branche">Beratung & Dienstleistung</div>
+        <h4>Recherche-Agent <em>für Lead-Vorbereitung</em></h4>
+        <p>Recherchiert vor Kundenterminen alles Relevante zum Unternehmen, zur Branche und zu Ansprechpartnern — und übergibt ein strukturiertes Briefing.</p>
+        <div class="agent-card-tasks">
+          <div class="agent-card-task">Sammelt öffentlich verfügbare Unternehmensdaten</div>
+          <div class="agent-card-task">Identifiziert relevante Entscheider und Themen</div>
+          <div class="agent-card-task">Erstellt strukturiertes Briefing-Dokument</div>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<!-- KI-ANWENDUNGEN -->
+<section class="bento-section" id="anwendungen">
+  <div class="bento-inner">
+    <div class="bento-marker">⸺ 03 Anwendungen</div>
+    <div class="bento-content">
+      <h2>Wo KI <em>echten</em><br>Mehrwert schafft.</h2>
+      <p class="bento-lead">Eine kleine Auswahl aus unserer Praxis — Bereiche, in denen KI mittelständische Unternehmen heute spürbar entlastet. Die Liste ist lang, das Potenzial in Ihrem Unternehmen vermutlich noch länger.</p>
+      
+      <div class="bento-grid">
+        
+        <div class="bento-tile large">
+          <div class="bento-tile-number">01 / 07+</div>
+          <div>
+            <div class="bento-tile-eyebrow">Marketing</div>
+            <h3>Inhalte schreiben sich heute<br><em>fast</em> <strong>von selbst.</strong></h3>
+            <p>Texte, Bilder, Social-Media-Posts, Newsletter, Landingpages, ganze Kampagnen — KI übernimmt das tägliche Marketing-Handwerk. Ihr Team gewinnt Zeit für Strategie und Markenführung. Genau dafür haben wir Marlo entwickelt.</p>
+            <div class="bento-tile-examples">
+              <span class="bento-tile-example">Texterstellung</span>
+              <span class="bento-tile-example">Bildgenerierung</span>
+              <span class="bento-tile-example">Kampagnen</span>
+              <span class="bento-tile-example">Social Media</span>
+            </div>
+          </div>
+          <span class="bento-tile-tag">marlo · live</span>
+        </div>
+        
+        <div class="bento-tile medium">
+          <div class="bento-tile-number">02 / 07+</div>
+          <div>
+            <div class="bento-tile-eyebrow">Vertrieb</div>
+            <h3>Mehr Zeit für<br>die richtigen Kunden.</h3>
+            <p>KI qualifiziert Leads, recherchiert Ansprechpartner, bereitet Termine vor und schreibt Angebote. Ihr Vertrieb verkauft, statt zu suchen — und trifft die Kunden mit dem höchsten Potenzial.</p>
+            <div class="bento-tile-examples">
+              <span class="bento-tile-example">Lead-Scoring</span>
+              <span class="bento-tile-example">Recherche</span>
+              <span class="bento-tile-example">Angebote</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bento-tile medium">
+          <div class="bento-tile-number">03 / 07+</div>
+          <div>
+            <div class="bento-tile-eyebrow">Service</div>
+            <h3>Antworten,<br>bevor gefragt wird.</h3>
+            <p>Anfragen werden vorsortiert, beantwortet oder direkt gelöst. Ihr Team wird sichtbar entlastet, Ihre Kunden schneller bedient — rund um die Uhr, ohne Warteschleife.</p>
+            <div class="bento-tile-examples">
+              <span class="bento-tile-example">Chatbots</span>
+              <span class="bento-tile-example">Tickets</span>
+              <span class="bento-tile-example">FAQ-Automation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bento-tile small">
+          <div class="bento-tile-number">04 / 07+</div>
+          <div>
+            <div class="bento-tile-eyebrow">Wissen</div>
+            <h3>Ihr Wissen<br>auf Abruf.</h3>
+            <p>Verträge, Handbücher, Protokolle, Erfahrungen — KI macht das Wissen Ihres Unternehmens durchsuchbar und nutzbar. Ohne dass es jemand verlässt.</p>
+          </div>
+        </div>
+        
+        <div class="bento-tile small">
+          <div class="bento-tile-number">05 / 07+</div>
+          <div>
+            <div class="bento-tile-eyebrow">Verwaltung</div>
+            <h3>Routine,<br>automatisch.</h3>
+            <p>Rechnungen, Belege, Datenpflege, Dokumentenprüfung — KI übernimmt das Wiederkehrende und gibt Ihrem Team den Kopf frei für das Eigentliche.</p>
+          </div>
+        </div>
+        
+        <div class="bento-tile small">
+          <div class="bento-tile-number">06 / 07+</div>
+          <div>
+            <div class="bento-tile-eyebrow">Operations</div>
+            <h3>Bessere<br>Entscheidungen.</h3>
+            <p>Forecasts, Anomalie-Erkennung, Prozess-Optimierung — KI gibt Klarheit, wo bisher Bauchgefühl entscheiden musste.</p>
+          </div>
+        </div>
+        
+        <div class="bento-tile small more">
+          <div>
+            <div class="bento-tile-more-icon">+</div>
+            <h3>Und mehr.</h3>
+            <p>HR, Forschung, Produktion, Logistik — die Liste wächst täglich. Wo soll bei Ihnen gestartet werden?</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZITAT - EIGENE BÜHNE -->
+<section class="quote-stage">
+  <p class="quote-text">
+    Industrielle Revolutionen haben den Mittelstand nie gestoppt — <span class="accent">sie haben ihn jedes Mal stärker gemacht.</span> <strong>KI ist die Nächste. Wir gehen sie mit Ihnen.</strong>
+  </p>
+</section>
+
+<!-- ÜBER UNS -->
+<section class="pillar" id="team">
+  <div class="pillar-inner">
+    <div class="pillar-marker">⸺ 04 Über uns</div>
+    <div class="pillar-content">
+      <h2>Quoodix wurde gegründet,<br><em>weil KI im Mittelstand zu oft als Bedrohung erlebt wird — und zu selten als Chance.</em></h2>
+      
+      <div class="pillar-body">
+        <p>Wir glauben, dass mittelständische Unternehmen die Stärksten sind, wenn es darum geht, Veränderung in echte Wirkung zu übersetzen. Sie haben gewachsenes Wissen, kurze Wege und Teams, die wirklich Verantwortung tragen. Was vielen fehlt, ist nicht die Technologie — sondern jemand, der sie in <strong>Ihre Sprache</strong> überträgt.</p>
+        
+        <p>Genau das ist unsere Aufgabe. Wir kommen aus Siegen, arbeiten von hier aus mit Unternehmen im gesamten DACH-Raum und entwickeln Quoodix Schritt für Schritt zu dem, was uns selbst gefehlt hätte: <em>ein Partner, der Beratung und Werkzeuge unter einem Dach vereint.</em></p>
+      </div>
+      
+      <div class="team-block">
+        <div class="team-eyebrow">— Team</div>
+        <div class="team-grid">
+          
+          <div class="team-member">
+            <div class="team-member-name">Benjamin Loos</div>
+            <div class="team-member-role">Beratung & Strategie · Vertrieb</div>
+            <p class="team-member-bio">Benjamin ist die Stimme von Quoodix bei Ihnen vor Ort. Er entwickelt mit Ihnen die KI-Strategie, hört zu, übersetzt zwischen Führung und Team und stellt sicher, dass Sie nicht nur ein Konzept, sondern ein gemeinsames Verständnis bekommen.</p>
+          </div>
+          
+          <div class="team-member">
+            <div class="team-member-name">Max Kleinwächter</div>
+            <div class="team-member-role">Tool-Entwicklung & Technologie</div>
+            <p class="team-member-bio">Max baut die Werkzeuge, die das Versprechen einlösen. Er führt die technische Entwicklung von Marlo und unseren weiteren Tools, integriert KI in bestehende Systeme und sorgt dafür, dass aus jedem Beratungsprojekt am Ende etwas läuft, das wirklich produktiv ist.</p>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact-stage" id="kontakt">
+  <div class="contact-eyebrow">⸺ Kontakt</div>
+  
+  <h2 class="contact-headline">Lassen Sie uns reden.<br><em>30 Minuten, kostenlos.</em></h2>
+  
+  <p class="contact-sub">
+    Keine Folien. Kein Verkaufsgespräch. Wir hören zu — und Sie bekommen drei konkrete Ideen, wie KI in Ihrem Unternehmen wirken kann.
+  </p>
+  
+  <a href="mailto:hello@quoodix.io?subject=Anfrage%20Erstgespr%C3%A4ch" class="contact-cta">
+    Erstgespräch anfragen →
+  </a>
+  
+  <div class="contact-direct">
+    <div class="contact-direct-item">
+      <div class="contact-direct-label">E-Mail</div>
+      <a class="contact-direct-value" href="mailto:hello@quoodix.io">hello@quoodix.io</a>
+    </div>
+    <div class="contact-direct-item">
+      <div class="contact-direct-label">Telefon</div>
+      <a class="contact-direct-value" href="tel:+49271XXXXXXX">+49 271 XXX XX XX</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-meta">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <span>© 2026 Quoodix · ein Projekt der B77 GmbH</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
